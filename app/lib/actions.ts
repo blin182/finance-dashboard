@@ -61,6 +61,7 @@ export async function createInvoice(prevState: State, formData: FormData) {
       VALUES (${customerId}, ${amountInCents}, ${status}, ${date})
     `;
   } catch (error) {
+    console.error('Database Error:', error);
     // If there is a database error, return specific error message
     return {
       message: 'Database Error: Failed to Create Invoice.',
@@ -101,6 +102,7 @@ export async function updateInvoice(
     Set customer_id = ${customerId}, amount = ${amountInCents}, status = ${status}
     Where id = ${id}`;
   } catch (error) {
+    console.error('Database Error:', error);
     // If there is a database error, return specific error message
     return {
       message: 'Database Error: Failed to Update Invoice.',
