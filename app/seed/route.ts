@@ -25,7 +25,7 @@ async function seedUsers() {
           VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
           ON CONFLICT (id) DO NOTHING;
         `;
-      }),
+      })
     );
 
     console.log('Users seeded successfully');
@@ -57,8 +57,8 @@ async function seedInvoices() {
           INSERT INTO invoices (customer_id, amount, status, date)
           VALUES (${invoice.customer_id}, ${invoice.amount}, ${invoice.status}, ${invoice.date})
           ON CONFLICT (id) DO NOTHING;
-        `,
-      ),
+        `
+      )
     );
 
     console.log('Invoices seeded successfully');
@@ -89,8 +89,8 @@ async function seedCustomers() {
           INSERT INTO customers (id, name, email, image_url)
           VALUES (${customer.id}, ${customer.name}, ${customer.email}, ${customer.image_url})
           ON CONFLICT (id) DO NOTHING;
-        `,
-      ),
+        `
+      )
     );
 
     console.log('Customers seeded successfully');
@@ -111,9 +111,7 @@ async function seedRevenue() {
       );
     `;
 
-    const values = revenue.map(
-      (rev) => [rev.month, rev.revenue]
-    );
+    const values = revenue.map((rev) => [rev.month, rev.revenue]);
 
     await sql`
       INSERT INTO revenue (month, revenue)
@@ -132,17 +130,22 @@ async function seedRevenue() {
 export async function GET() {
   try {
     console.log('Starting database seeding...');
-    const result = await sql.begin(async (sql) => {
+    const result = await sql.begin(async () => {
       await seedUsers();
       await seedCustomers();
       await seedInvoices();
       await seedRevenue();
     });
-
+    console.log('Seed result:', result); // Log the result of the seeding operation
     console.log('Database seeded successfully');
-    return new Response(JSON.stringify({ message: 'Database seeded successfully' }), { status: 200 });
+    return new Response(
+      JSON.stringify({ message: 'Database seeded successfully' }),
+      { status: 200 }
+    );
   } catch (error) {
     console.error('Seeding Error:', error);
-    return new Response(JSON.stringify({ error: (error as Error).message }), { status: 500 });
+    return new Response(JSON.stringify({ error: (error as Error).message }), {
+      status: 500,
+    });
   }
 }
