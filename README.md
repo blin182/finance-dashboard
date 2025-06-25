@@ -1,5 +1,36 @@
-## Next.js App Router Course - Starter
+## Next.js Dashboard App
 
-This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
+This is a finished dashboard application built with the Next.js App Router.  
+It features authentication, customer and invoice management, and a responsive UI.
 
-For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
+### Features
+
+- User authentication (demo credentials provided)
+- Customer and invoice management
+- Responsive dashboard layout
+- Modern UI with Tailwind CSS
+- Example data for easy testing
+
+### Demo Login
+
+Use the following demo credentials to log in:
+
+- **Email:** user@nextmail.com
+- **Password:** 123456
+
+### Getting Started
+
+1. Install dependencies:
+
+   ```sh
+   pnpm install
+
+   ```
+
+2. Run the development server:
+
+   ```sh
+   pnpm dev
+   ```
+
+3. Open http://localhost:3000 in your browser.
