@@ -4,6 +4,8 @@ import CustomersTable from '@/app/ui/customers/table';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Metadata } from 'next';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Customers',
 };
